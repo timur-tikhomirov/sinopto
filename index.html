@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Онлайн-синаптофор</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: black; }
+        #canvas { display: block; width: 100vw; height: 100vh; }
+        .controls-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 100;
+}
+        #controls {
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            color: white;
+            font-family: Arial;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: -1px; 
+            transition: all 0.3s ease;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 90%;
+        }
+        #toggleControlsBtn {
+            padding: 8px 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 0 0 8px 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+}
+
+
+#toggleControlsBtn:hover {
+    background: rgba(0,0,0,0.9);
+}
+
+#controls {
+    position: fixed;
+    bottom: 30px;
+    left: 10px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    color: white;
+    font-family: Arial;
+    transition: all 0.3s ease;
+    margin-bottom: 0;
+}
+
+#controls.hidden {
+
+    transform: translateY(calc(100% + 20px));
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+#toggleControlsBtn.hidden {
+    color: #888; 
+    border-color: #666; 
+}
+
+#toggleControlsBtn.hidden::after {
+    content: " ▲"; 
+    color: #888;
+}
+
+#toggleControlsBtn::after {
+    content: " ▼"; 
+    color: white;
+}
+#scaleValue {
+    display: inline-block;
+    min-width: 30px;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="controls-wrapper">
+        <div id="controls">
+        <label>Яркость красного: <input type="range" id="redBrightness" min="0" max="1" step="0.1" value="1"></label>
+        <label>Яркость синего: <input type="range" id="blueBrightness" min="0" max="1" step="0.1" value="1"></label>
+        <label>Горизонтальное расстояние: <input type="range" id="horizontalDistance" min="-500" max="500" value="100"></label>
+        <label>Вертикальное расстояние: <input type="range" id="verticalDistance" min="-500" max="500" value="0"></label>
+        <label>Масштаб:  <input type="range" id="scale" min="0.1" max="3" step="0.1" value="1"> <span id="scaleValue">1x</span></label>
+        <label>Режим:
+            <select id="mode">
+                <option value="static">Статика</option>
+                <option value="alternate">Попеременное мигание</option>
+                <option value="sync">Одновременное мигание</option>
+            </select>
+        </label>
+        <label>Частота (Гц): <input type="number" id="frequency" min="0.1" max="10" step="0.1" value="1"></label>
+        </div>
+        <button id="toggleControlsBtn">▲ Скрыть настройки</button>
+    </div>
+    <script src="app.js"></script>    
+</body>
+</html>
