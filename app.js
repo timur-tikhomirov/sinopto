@@ -29,8 +29,8 @@ function checkImagesLoaded() {
 redImage.onload = checkImagesLoaded;
 blueImage.onload = checkImagesLoaded;
 
-redImage.src = 'assets/red_figure.png'; 
-blueImage.src = 'assets/blue_figure.png'; 
+redImage.src = 'assets/red_snow.png'; 
+blueImage.src = 'assets/blue_snow.png'; 
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
